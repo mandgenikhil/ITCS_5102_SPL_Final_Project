@@ -24,23 +24,6 @@ Install required packages using
 npm install {Package-Name}
 ```
 
-- react-router-dom
-- am4themes
-- am4charts
-- antd
-- bulma
-
-er Acceptance Testing
-    Will have one session where all the stakeholders will do UAT.
-
-
-
-### Step 5 : Containerize whole application 
-
-After completing the above steps, we will use [Docker](https://www.docker.com/) images to containerize our whole web based application into a single deployment.
-We need to create a Dockerfile which will hold all the required environment related configurations, such as packages install commands, port enablements, security layers etc.
-
-
 [Github]: <https://github.com/mandgenikhil/ITCS_5102_SPL_Final_Project.git>
 [Golang]: <https://go.dev/>
 [Nodejs]: <https://nodejs.org/en/>
