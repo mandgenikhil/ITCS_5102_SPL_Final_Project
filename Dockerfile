@@ -1,39 +1,15 @@
-############################
-# STEP 1 build executable binary
-############################
-FROM golang:alpine AS builder
-# Install git.
-# Git is required for fetching the dependencies.
-RUN apk update && apk add --no-cache 'git=~2'
+FROM golang:alpine
 
-# Install dependencies
-ENV GO111MODULE=on
-WORKDIR $GOPATH/src/packages/goginapp/
-COPY . .
+ENV GIN_MODE=release
+ENV PORT=3001
 
-# Fetch dependencies.
-# Using go get.
-# RUN go get -d -v
+WORKDIR /go/src/yttt
 
-# Build the binary.
-# RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/main .
+COPY . /go/src/yttt/src
+COPY front-end/build /go/src/yttt/templates
 
-############################
-# STEP 2 build a small image
-############################
-FROM alpine:3
+RUN go build yttt/src/api
 
-WORKDIR /
+EXPOSE $PORT
 
-# Copy our static executable.
-# COPY --from=builder /go/main /go/main
-COPY back-end /go/public
-
-ENV PORT 8080
-ENV GIN_MODE release
-EXPOSE 8080
-
-WORKDIR /go
-
-# Run the Go Gin binary.
-ENTRYPOINT ["/go/main"]
+ENTRYPOINT ["./api"]

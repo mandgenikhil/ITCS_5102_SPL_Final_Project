@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Initial Server File!")
+	fmt.Println("Golang Gin Webserver File")
 }
