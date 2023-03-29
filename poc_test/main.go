@@ -8,12 +8,12 @@ import (
 
 func main() {
 
-	url := "https://coolguruji-youtube-to-mp3-download-v1.p.rapidapi.com//?id=lF-jPBnZ098"
+	url := ""
 
 	req, _ := http.NewRequest("GET", url, nil)
 
-	req.Header.Add("X-RapidAPI-Key", "640322e98bmsh044a2c3f935e237p1fb332jsnb6684dd45a51")
-	req.Header.Add("X-RapidAPI-Host", "coolguruji-youtube-to-mp3-download-v1.p.rapidapi.com")
+	req.Header.Add("X-RapidAPI-Key", "")
+	req.Header.Add("X-RapidAPI-Host", "")
 
 	res, _ := http.DefaultClient.Do(req)
 
