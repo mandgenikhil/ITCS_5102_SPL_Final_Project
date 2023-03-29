@@ -45,7 +45,7 @@ func setupRouter() *gin.Engine {
 
 func main() {
 	r := setupRouter()
-	r.Use(static.Serve("/", static.LocalFile("../front-end/build/", true)))
+	r.Use(static.Serve("/", static.LocalFile("../front-end/ystw-ui/build/", true)))
 
 	portNumber := ":8080"
 	r.Run(portNumber)
