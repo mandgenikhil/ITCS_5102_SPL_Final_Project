@@ -13,9 +13,12 @@ function Header() {
                 </div>
 
                 <div className="navbar-end">
-                        <a href="#demo" className="navbar-item is-family-monospace">
+                        <a href="#app" className="navbar-item is-family-monospace">
                             Try it out
-                        </a>                       
+                        </a>              
+                        <a href="#status" className="navbar-item is-family-monospace">
+                            Get request status
+                        </a>                                
                 </div>
             </div>
         </nav>
