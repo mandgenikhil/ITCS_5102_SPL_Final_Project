@@ -1,32 +1,73 @@
 import React from 'react'
 import { useState } from 'react';
 import "./index.css"
+import Api from '../../apis'
+
 var validUrl = require('valid-url');
 
 function AppBody() {
     function checkValidURL(value) {
         if (validUrl.isUri(value)) {
-            isValidURL(true);
+            isValidURL(value);
         } else {
-            isValidURL(false);
+            isValidURL("");
         }
     }
     function submitInput() {
         console.log(inputURL);
         console.log(inputLang);
         console.log(outputLang);
-        if(inputURL === true)
+        if(inputURL.length >0)
         {
-            alert("All inputs are valid")
+            saveRequest()
         }
         else
         {
             alert("Please verify Youtube URL")
         }
     }
+
+    // useEffect(() => {
+    //     fetchRequests() //
+    //   }, [])
+
+    //   const fetchRequests = () => {
+    //     fetch(Api.V1.request, {
+    //       method: 'GET',
+    //     })
+    //       .then((res) => res.json())
+    //       .then((result) => setData(result))
+    //       .catch((err) => console.log('error'))
+    //   }
+
+      const saveRequest = () => {
+        fetch(Api.V1.request, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(
+             {
+                "id": "4",
+                "name": "Sample Request",
+                "url": inputURL,
+                "input_lang": inputLang,
+                "output_lang": outputLang,
+                "status":""
+              },
+          ),
+        })
+          .then((res) => res.json())
+          .then((result) => setData(result))
+          .catch((err) => console.log(err))
+
+          console.log(requestResult)
+      }
     const optionsLang = ["en-US", "hi-IN"];
 
-    const [inputURL, isValidURL] = useState(false);
+    const [requestResult, setData] = useState({})
+
+    const [inputURL, isValidURL] = useState("");
     const [inputLang, setInputLang] = useState(optionsLang[0]);
     const [outputLang, setOutputLang] = useState(optionsLang[0]);
 

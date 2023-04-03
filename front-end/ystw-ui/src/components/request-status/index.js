@@ -1,15 +1,22 @@
 import React from 'react'
 import { useState } from 'react';
+import Api from "../../apis"
 import "./index.css"
 
 function RequestStatus() {
-    function GetRequestStatus() {    
 
-        console.log(requestId);
-        
+    const getRequestById = (id) => {
+        fetch(Api.V1.request + "/" + id, {
+            method: 'GET',
+        })
+            .then((res) => res.json())
+            .then((result) => getRequestData(result))
+            .catch((err) => console.log('error'))
     }
 
+
     const [requestId, setRequestID] = useState(0);
+    const [requestData, getRequestData] = useState(null);
 
     return (
         <section id="status" className="hero is-medium is-link">
@@ -28,9 +35,15 @@ function RequestStatus() {
 
                 <div className="field is-grouped">
                     <div className="control">
-                        <button className="button is-primary has-text-weight-bold " onClick={GetRequestStatus}>Get Request Status</button>
+                        <button className="button is-primary has-text-weight-bold " onClick={() => getRequestById(requestId)}>Get Request Status</button>
                     </div>
                 </div>
+
+                {requestData !== null ? <div>
+                    <div><span>Request Id :- </span>{requestData.id}</div>
+                    <div><span>Request Name :- </span>{requestData.name}</div>
+                    <div><span>Request Status :- </span>{requestData.url}</div>
+                </div> : <div></div>}
 
             </div>
         </section>
