@@ -48,9 +48,8 @@ function AppBody() {
           },
           body: JSON.stringify(
              {
-                "id": "4",
                 "name": "Sample Request",
-                "url": inputURL,
+                "youtube_url": inputURL,
                 "input_lang": inputLang,
                 "output_lang": outputLang,
                 "status":""

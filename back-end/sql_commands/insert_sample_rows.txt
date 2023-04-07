@@ -1,0 +1,1 @@
+INSERT INTO request (name, youtube_url,input_lang,output_lang,status) values ('sample_request', 'https://www.youtube.com/watch?v=2zRHAIVRKqA&ab_channel=DannyPandit', 'en' , 'hn','in-progress');

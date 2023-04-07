@@ -1,0 +1,8 @@
+CREATE TABLE request (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    youtube_url TEXT,
+    input_lang TEXT,
+    output_lang TEXT,
+    status TEXT
+)

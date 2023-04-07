@@ -39,11 +39,11 @@ function RequestStatus() {
                     </div>
                 </div>
 
-                {requestData !== null ? <div>
+                {requestData !== null && "id" in requestData ? <div>
                     <div><span>Request Id :- </span>{requestData.id}</div>
                     <div><span>Request Name :- </span>{requestData.name}</div>
                     <div><span>Request Status :- </span>{requestData.url}</div>
-                </div> : <div></div>}
+                </div> : <div>Request Not Found!</div>}
 
             </div>
         </section>
