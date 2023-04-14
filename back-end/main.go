@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/mattn/go-sqlite3"
 
@@ -96,6 +97,34 @@ func GetRequests() ([]Request, error) {
 	return request, err
 }
 
+func UpdateRequest(id string, result string) (bool, error) {
+
+	fmt.Println("yo :- " + result)
+
+	tx, err := Database_Sqlite.Begin()
+	if err != nil {
+		return false, err
+	}
+
+	stmt, err := tx.Prepare("UPDATE request SET status = ? WHERE id = ?")
+
+	if err != nil {
+		return false, err
+	}
+
+	defer stmt.Close()
+
+	_, err = stmt.Exec(result, id)
+
+	if err != nil {
+		return false, err
+	}
+
+	tx.Commit()
+
+	return true, nil
+}
+
 // Insert New Request2 Obj To Db
 func AddRequest(newRequest Request) (bool, error) {
 
@@ -158,6 +187,22 @@ func getRequestByID(c *gin.Context) {
 	}
 }
 
+func getRequestResult(c *gin.Context) {
+	req_id := c.Query("request_id")
+	out_res := c.Query("result")
+
+	c.Header("Access-Control-Allow-Origin", "*")
+	c.Header("Content-Type", "application/json")
+
+	result_bool, err := UpdateRequest(req_id, out_res)
+
+	if err == nil && result_bool == true {
+		c.IndentedJSON(http.StatusOK, gin.H{"message": out_res})
+	} else {
+		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Error Occured!"})
+	}
+}
+
 func postRequest(c *gin.Context) {
 	var json Request
 
@@ -186,7 +231,7 @@ func main() {
 	checkErr(err)
 
 	r := setupRouter()
-
+	r.GET("/request/result", getRequestResult)
 	r.GET("/request", getAllRequests)
 	r.GET("/request/:id", getRequestByID)
 	r.POST("/request", postRequest)

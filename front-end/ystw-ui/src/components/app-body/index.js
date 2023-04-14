@@ -27,19 +27,6 @@ function AppBody() {
         }
     }
 
-    // useEffect(() => {
-    //     fetchRequests() //
-    //   }, [])
-
-    //   const fetchRequests = () => {
-    //     fetch(Api.V1.request, {
-    //       method: 'GET',
-    //     })
-    //       .then((res) => res.json())
-    //       .then((result) => setData(result))
-    //       .catch((err) => console.log('error'))
-    //   }
-
       const saveRequest = () => {
         fetch(Api.V1.request, {
           method: 'POST',
@@ -62,7 +49,7 @@ function AppBody() {
 
           console.log(requestResult)
       }
-    const optionsLang = ["en-US", "hi-IN"];
+    const optionsLang = ["en-US", "ja-JP"];
 
     const [requestResult, setData] = useState({})
 
