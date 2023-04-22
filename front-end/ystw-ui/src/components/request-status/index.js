@@ -2,10 +2,12 @@ import React from 'react'
 import { useState } from 'react';
 import Api from "../../apis"
 import "./index.css"
+import OutputModal from './output-modal';
 
 function RequestStatus() {
-
     const getRequestById = (id) => {
+        toggalModal(true);
+
         fetch(Api.V1.request + "/" + id, {
             method: 'GET',
         })
@@ -14,8 +16,8 @@ function RequestStatus() {
             .catch((err) => console.log('error'))
     }
 
-
     const [requestId, setRequestID] = useState(0);
+    const [showModal, toggalModal] = useState(false);
     const [requestData, getRequestData] = useState(null);
 
     return (
@@ -32,19 +34,15 @@ function RequestStatus() {
                         />
                     </div>
                 </div>
-
                 <div className="field is-grouped">
                     <div className="control">
                         <button className="button is-primary has-text-weight-bold " onClick={() => getRequestById(requestId)}>Get Request Status</button>
                     </div>
-                </div>
-
+                </div>            
                 {requestData !== null && "id" in requestData ? <div>
-                    <div><span>Request Id :- </span>{requestData.id}</div>
-                    <div><span>Request Name :- </span>{requestData.name}</div>
-                    <div><span>Request Status :- </span>{requestData.url}</div>
-                </div> : <div>Request Not Found!</div>}
-
+                    <div><span>Request Id :- </span>{requestData.id}</div>                    
+                    {showModal === true ? <OutputModal isActive = {showModal} data={requestData.status} closeModal={()=>toggalModal(!showModal)}/> : null}                    
+                </div> : null}
             </div>
         </section>
     )

@@ -1,7 +1,7 @@
 FROM golang:alpine
 
 ENV GIN_MODE=release
-ENV PORT=3001
+ENV PORT=8081
 
 WORKDIR /go/src/yttt
 

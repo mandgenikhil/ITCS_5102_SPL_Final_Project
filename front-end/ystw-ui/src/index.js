@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Home from './screens/home'
+import HowToRun from './screens/how-to-run'
 
 import {
   createBrowserRouter,
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/howtorun",
+    element: <HowToRun />,
   },
 ]);
 
