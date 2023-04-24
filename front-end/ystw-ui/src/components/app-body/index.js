@@ -46,8 +46,8 @@ function AppBody() {
           .then((res) => res.json())
           .then((result) => setData(result))
           .catch((err) => console.log(err))
-
-          console.log(requestResult)
+          
+        alert("Reqeust Submitted Sucessfully!")
       }
     const optionsLang = ["en-US", "ja-JP"];
 
@@ -89,7 +89,7 @@ function AppBody() {
                 </div>
 
                 <div className="field">
-                    <label className="label has-text-white">Input Language</label>
+                    <label className="label has-text-white">Output Language</label>
                     <div className="control">
                         <div className="select">
                             <select
@@ -116,6 +116,7 @@ function AppBody() {
 
             </div>
         </section>
+        
     )
 }
 

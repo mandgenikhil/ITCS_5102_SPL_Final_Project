@@ -215,7 +215,21 @@ func postRequest(c *gin.Context) {
 	c.Header("Access-Control-Allow-Origin", "*")
 	c.Header("Content-Type", "application/json")
 	if success {
-		c.JSON(http.StatusOK, gin.H{"message": "Success"})
+		response_data, err_data := http.Get("http://localhost:8082/azure-speech-service?request_id=1&input_lang=ja-JP&output_lang=en")
+
+		if err != nil {
+			fmt.Print(err.Error())
+			c.JSON(http.StatusBadRequest, gin.H{"error": err_data})
+		}
+
+		fmt.Print(response_data)
+
+		// responseDataStream, err := ioutil.ReadAll(response_data.Body)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		c.JSON(http.StatusOK, gin.H{"message": "Success "})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err})
 	}

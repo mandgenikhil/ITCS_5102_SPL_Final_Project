@@ -6,8 +6,10 @@ import "./index.css"
  function OutputModal(props){  
   const [downloadLink, setDownloadLink] = useState('')  
   const makeTextFile = () => {
+
+    var replacement = props.data.replace("kicking","Nikhil")
     
-    const data = new Blob([props.data])
+    const data = new Blob([replacement])
     
     if (downloadLink !== '') window.URL.revokeObjectURL(downloadLink)
 

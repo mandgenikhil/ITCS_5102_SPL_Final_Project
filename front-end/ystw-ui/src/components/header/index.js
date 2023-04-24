@@ -13,11 +13,14 @@ function Header() {
                 </div>
 
                 <div className="navbar-end">
+                <a href="#howtouse" className="navbar-item is-family-monospace">
+                            How To Use
+                        </a>              
                         <a href="#app" className="navbar-item is-family-monospace">
-                            Try it out
+                            Try It Out
                         </a>              
                         <a href="#status" className="navbar-item is-family-monospace">
-                            Get request status
+                            Get Request Status
                         </a>                                
                 </div>
             </div>

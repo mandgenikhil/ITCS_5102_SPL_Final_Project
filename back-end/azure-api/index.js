@@ -24,6 +24,8 @@ function azure_speech_tranlate_func(request_id,input_lang, output_lang,response)
     let audioConfig = sdk.AudioConfig.fromWavFileInput(fs.readFileSync("./sample_audio_files/sample1.wav"));
     let translationRecognizer = new sdk.TranslationRecognizer(speechTranslationConfig, audioConfig);
 
+
+
     translationRecognizer.recognizeOnceAsync(result => {
         switch (result.reason) {
             case sdk.ResultReason.TranslatedSpeech:
