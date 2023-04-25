@@ -12,9 +12,6 @@ func main() {
 
 	req, _ := http.NewRequest("GET", url, nil)
 
-	req.Header.Add("X-RapidAPI-Key", "")
-	req.Header.Add("X-RapidAPI-Host", "")
-
 	res, _ := http.DefaultClient.Do(req)
 
 	defer res.Body.Close()

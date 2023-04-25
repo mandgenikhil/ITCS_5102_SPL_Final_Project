@@ -3,6 +3,7 @@ import Header from '../../components/header'
 import Footer from '../../components/footer'
 import AppBody from '../../components/app-body'
 import RequestStatus from '../../components/request-status'
+import HowToUse from '../how-to-run'
 import './index.css'
 
 function Home() {
@@ -22,6 +23,7 @@ function Home() {
         </section>     
         <AppBody />   
         <RequestStatus />
+        <HowToUse />
         <Footer/>
     </Fragment>
   )
